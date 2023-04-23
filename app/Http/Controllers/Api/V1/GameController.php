@@ -99,7 +99,7 @@ class GameController extends Controller
                 'error' => $th->getMessage(),
                 'trace' => $th->getTraceAsString()
             ];
-            Log::error('LOG ERROR CREATE GAME.', $response);
+            Log::error('LOG ERROR UPDATE GAME.', $response);
             // Deshacemos la transacción de la BD
             DB::rollBack();
             // Retornamos la respuesta de error
