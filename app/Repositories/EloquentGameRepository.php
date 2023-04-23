@@ -24,7 +24,7 @@ class EloquentGameRepository implements GameRepositoryInterface
 
     public function paginate()
     {   // Obtenemos los juegos ordenados por fecha de creación y los paginamos
-        $games = Game::orderBy('created_at', 'desc')->paginate(2);
+        $games = Game::orderBy('created_at', 'desc')->paginate(6);
         // Devolvemos una colección de recursos de juegos para ser utilizada en la respuesta
         return GameResource::collection($games);
     }
