@@ -7,7 +7,6 @@ use App\Services\StorageImage;
 use App\Http\Resources\GameResource;
 use App\Contracts\Game\FindGameInterface;
 use App\Contracts\Game\GameRepositoryInterface;
-use Illuminate\Support\Facades\Log;
 
 class EloquentGameRepository implements GameRepositoryInterface
 {
@@ -54,7 +53,6 @@ class EloquentGameRepository implements GameRepositoryInterface
         $game = $this->findGame->findGame($id);
         $pathImage = $data['pathImage'];
         if (array_key_exists('pathImageUrl', $data) && !$data['pathImageUrl']) { //Validamos que la imagen que llega es una url o un archivo una para almacenar al storage
-            Log::info('ENTRO AQUI');
             $pathImage = $this->storageImage->saveImage($pathImage, 'games'); //Guardamos la imagen en el storage y recibimos el path
         }
         // Actualizamos el juego con los datos recibidos

@@ -3,14 +3,13 @@
 namespace App\Services;
 
 use Exception;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
 class StorageImage
 {
 
-    public function saveImage($image, $folder): string //función para guardar imagenes, estará disponible como compartida el BoundedContex
+    public function saveImage($image, $folder): string //función para guardar imágenes
     {
         try {
             if (isset($image['urlResized'])) {
