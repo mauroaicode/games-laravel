@@ -17,5 +17,5 @@ class Game extends Model
         'id' => 'string'
     ];
 
-    protected $fillable = ['name', 'description', 'pathImage', 'url', 'state'];
+    protected $fillable = ['name', 'description', 'pathImage', 'pathImageUrl', 'url', 'state'];
 }

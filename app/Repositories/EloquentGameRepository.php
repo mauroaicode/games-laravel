@@ -7,6 +7,7 @@ use App\Services\StorageImage;
 use App\Http\Resources\GameResource;
 use App\Contracts\Game\FindGameInterface;
 use App\Contracts\Game\GameRepositoryInterface;
+use Illuminate\Support\Facades\Log;
 
 class EloquentGameRepository implements GameRepositoryInterface
 {
@@ -31,13 +32,14 @@ class EloquentGameRepository implements GameRepositoryInterface
     public function create(array $data)
     {
         $pathImage = $data['pathImage'];
-        if (!$data['pathImageUrl']) { //Validamos que la imagen que llega es una url o un archivo una para almacenar al storage
+        if (array_key_exists('pathImageUrl', $data) && !$data['pathImageUrl']) { //Validamos que la imagen que llega es una url o un archivo una para almacenar al storage
             $pathImage = $this->storageImage->saveImage($pathImage, 'games'); //Guardamos la imagen en el storage y recibimos el path
         }
         // Creamos un nuevo juego con los datos recibidos
         $game = Game::create([
             'name' => $data['name'],
             'description' => $data['description'],
+            'pathImageUrl' => $data['pathImageUrl'],
             'pathImage' => $pathImage,
             'url' => $data['url'],
             'state' => $data['state']
@@ -51,7 +53,8 @@ class EloquentGameRepository implements GameRepositoryInterface
         //Buscamos el juego, si no existe entonces devolverá una excepción
         $game = $this->findGame->findGame($id);
         $pathImage = $data['pathImage'];
-        if (!$data['pathImageUrl']) { //Validamos que la imagen que llega es una url o un archivo una para almacenar al storage
+        if (array_key_exists('pathImageUrl', $data) && !$data['pathImageUrl']) { //Validamos que la imagen que llega es una url o un archivo una para almacenar al storage
+            Log::info('ENTRO AQUI');
             $pathImage = $this->storageImage->saveImage($pathImage, 'games'); //Guardamos la imagen en el storage y recibimos el path
         }
         // Actualizamos el juego con los datos recibidos
@@ -60,6 +63,7 @@ class EloquentGameRepository implements GameRepositoryInterface
                 'name' => $data['name'],
                 'description' => $data['description'],
                 'pathImage' => $pathImage,
+                'pathImageUrl' => $data['pathImageUrl'],
                 'url' => $data['url'],
                 'state' => $data['state']
             ]

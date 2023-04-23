@@ -19,17 +19,20 @@ class DatabaseSeeder extends Seeder
         Game::factory()->count(1)->create([
             'name' => 'Bamboo Rush',
             'url' => 'https://latamwin-gp3.discreetgaming.com/cwguestlogin.do?bankId=3006&gameId=806&lang=es',
-            'pathImage' => 'https://winchiletragamonedas.com/public/images/games/bamboo_rush.jpeg'
+            'pathImage' => 'https://winchiletragamonedas.com/public/images/games/bamboo_rush.jpeg',
+            'pathImageUrl' => true
         ]);
         Game::factory()->count(1)->create([
             'name' => 'Reels of Wealth',
             'url' => 'https://latamwin-gp3.discreetgaming.com/cwguestlogin.do?bankId=3006&gameId=795&lang=es',
-            'pathImage' => 'https://winchiletragamonedas.com/public/images/games/reels_of_wealth.jpeg'
+            'pathImage' => 'https://winchiletragamonedas.com/public/images/games/reels_of_wealth.jpeg',
+            'pathImageUrl' => true
         ]);
         Game::factory()->count(1)->create([
             'name' => 'Dragon & Phoenix',
             'url' => 'https://latamwin-gp3.discreetgaming.com/cwguestlogin.do?bankId=3006&gameId=814&lang=es',
-            'pathImage' => 'https://winchiletragamonedas.com/public/images/games/dragon_phoenix.jpeg'
+            'pathImage' => 'https://winchiletragamonedas.com/public/images/games/dragon_phoenix.jpeg',
+            'pathImageUrl' => true
         ]);
     }
 }

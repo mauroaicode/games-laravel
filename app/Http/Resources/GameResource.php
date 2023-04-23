@@ -22,6 +22,7 @@ class GameResource extends JsonResource
             'pathImage' => $this->pathImage,
             'url' => $this->url,
             'state' => $this->state,
+            'pathImageUrl' => $this->pathImageUrl,
             'created_at' => Carbon::parse($this->created_at)->format('M d Y')
         ];
     }

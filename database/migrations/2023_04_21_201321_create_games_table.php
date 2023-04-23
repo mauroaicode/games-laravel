@@ -19,6 +19,7 @@ return new class extends Migration
             $table->mediumText('description');
             $table->string('pathImage');
             $table->string('url');
+            $table->boolean('pathImageUrl');
             $table->boolean('state')->default(true);
             $table->timestamps();
         });

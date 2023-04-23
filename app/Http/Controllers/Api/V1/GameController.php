@@ -7,8 +7,8 @@ use App\Http\Requests\GameRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Contracts\Game\GameRepositoryInterface;
 use Symfony\Component\HttpFoundation\Response;
+use App\Contracts\Game\GameRepositoryInterface;
 
 class GameController extends Controller
 {
@@ -33,6 +33,7 @@ class GameController extends Controller
         // Si no hay juegos, retornamos un mensaje de error
         if ($games->isEmpty()) {
             return new JsonResponse([
+                'data' => $games,
                 'message' => 'No hay juegos'
             ], Response::HTTP_NOT_FOUND);
         }
@@ -55,7 +56,7 @@ class GameController extends Controller
             $game = $this->repository->create($data);
             // Retornamos la respuesta exitosa
             return new JsonResponse([
-                'game' => $game,
+                'data' => $game,
                 'message' => 'Juego Agregado Correctamente'
             ], Response::HTTP_CREATED);
         } catch (\Throwable $th) {
@@ -77,6 +78,7 @@ class GameController extends Controller
 
     public function update(GameRequest $request, $id)
     {
+        Log::info($request);
         // Obtenemos los parámetros de la petición
         $data = $this->getGameParams();
         // Iniciamos la transacción de la BD
@@ -87,7 +89,7 @@ class GameController extends Controller
             $game = $this->repository->update($data, $id);
             // Retornamos la respuesta exitosa
             return new JsonResponse([
-                'game' => $game,
+                'data' => $game,
                 'message' => 'Juego Actualizado Correctamente.'
             ], Response::HTTP_OK);
         } catch (\Throwable $th) {
