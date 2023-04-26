@@ -51,9 +51,9 @@ class GameController extends Controller
         // Iniciamos la transacción de la BD
         DB::beginTransaction();
         try {
-            DB::commit();
             // Creamos el juego con los datos recibidos
             $game = $this->repository->create($data);
+            DB::commit();
             // Retornamos la respuesta exitosa
             return new JsonResponse([
                 'data' => $game,
@@ -84,9 +84,9 @@ class GameController extends Controller
         // Iniciamos la transacción de la BD
         DB::beginTransaction();
         try {
-            DB::commit();
             // Actualizamos el juego con los datos recibidos
             $game = $this->repository->update($data, $id);
+            DB::commit();
             // Retornamos la respuesta exitosa
             return new JsonResponse([
                 'data' => $game,
